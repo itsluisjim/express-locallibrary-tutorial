@@ -43,8 +43,16 @@ AuthorSchema.virtual("lifespan").get(function () {
   } else {
     return '';
   }
+});
 
+// virtual for author's date of birth, formatted 'yyyy-MM-dd' (e.g. '2024-02-28')
+AuthorSchema.virtual('date_of_birth_yyyy_mm_dd').get(function () {
+  return DateTime.fromJSDate(this.date_of_birth).toISODate();
+});
 
+// virtual for author's date of death, formatted 'yyyy-MM-dd' (e.g. '2024-02-28')
+AuthorSchema.virtual('date_of_death_yyyy_mm_dd').get(function () {
+  return DateTime.fromJSDate(this.date_of_death).toISODate();
 });
 
 
