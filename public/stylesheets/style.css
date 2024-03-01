@@ -1,0 +1,54 @@
+.text-success {
+  color: green;
+}
+
+.text-danger {
+  color: red;
+}
+
+.text-warning {
+  color: yellow;
+}
+
+
+body {
+  margin: 0;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: lightsalmon;
+  display: grid;
+  width: 100vw;
+  height: 100vh;
+  grid-template-areas:
+    "nav  main"
+    "nav  foot";
+  grid-template-rows: 1fr 5rem;
+  grid-template-columns: 15rem 1fr;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#sidebar {
+  grid-area: nav;
+  background-color: pink;
+  padding: 2rem;
+
+  display: flex;
+  flex-direction: column;
+}
+
+#sidebar a {
+  padding: 1rem;
+  border: 1px solid blueviolet;
+}
+#footer {
+  grid-area: foot;
+  background-color: limegreen;
+
+}
+
+#content-container {
+  grid-area: main;
+  padding: 2rem;
+}
