@@ -1,0 +1,25 @@
+<h1> <%= title %></h1>
+<form action="" method="post">
+    <label for="name">Genre</label>
+    <input 
+        type="text" 
+        name="name" 
+        id="name" 
+        placeholder="Fantasy, Poetry etc."
+        required
+        <% if (undefined === genre) { %>
+            value=''
+        <% } else { %>
+            value=<%= genre.name %>
+        <% } %>
+    >
+    <button type="submit">Submit</button>
+</form>
+<% if (errors) { %>
+    <ul>
+        <% errors.forEach(err => { %>
+            <li><%= err.msg %></li>
+        <% }) %>
+    </ul>
+<% } %>
+

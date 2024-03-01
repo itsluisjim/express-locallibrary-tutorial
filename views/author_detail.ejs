@@ -1,0 +1,14 @@
+<h1>Author: <%= author.name %></h1>
+<p><%= author.lifespan %></p>
+<br>
+
+<% if (books.length) { %>
+
+    <% books.forEach(book => { %>
+     <a href=<%= book.url %>><%= book.title %></a>
+     <p><%= book.summary %></p>
+    <% }) %>
+
+<% } else { %>
+    <p>Author has no books.</p>
+<% } %>
