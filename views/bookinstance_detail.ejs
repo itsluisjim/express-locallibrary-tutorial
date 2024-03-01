@@ -1,3 +1,5 @@
+<%- include('./partials/header') %>
+
 <% if (instance) { %> 
     <h1>ID: <%= instance.id %></h1>
     
@@ -19,3 +21,4 @@
 <% } else { %>
     <p>Instance not found.</p>
 <% } %>
+<%- include('./partials/footer') %>

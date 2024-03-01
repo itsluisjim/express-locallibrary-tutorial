@@ -1,3 +1,5 @@
+<%- include('./partials/header') %>
+
 <h1><%= title %></h1>
 
 <% if (book_list.length) { %>
@@ -12,3 +14,4 @@
 <%} else { %>
 <p>There are no books.</p>
 <% } %>
+<%- include('./partials/footer') %>

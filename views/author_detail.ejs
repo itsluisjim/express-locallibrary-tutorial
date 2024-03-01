@@ -1,3 +1,5 @@
+<%- include('./partials/header') %>
+
 <h1>Author: <%= author.name %></h1>
 <p><%= author.lifespan %></p>
 <br>
@@ -12,3 +14,4 @@
 <% } else { %>
     <p>Author has no books.</p>
 <% } %>
+<%- include('./partials/footer') %>

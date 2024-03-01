@@ -1,3 +1,4 @@
+<%- include('./partials/header') %>
 <h1>Title: <%= book.title %></h1>
 
 <h3>Author: <a href=<%= book.author.url %>><%= book.author.name %></a></h3>
@@ -5,7 +6,7 @@
 <p>ISBN: <%= book.isbn %></p>
 <p>Genres:
     <% book.genre.forEach((genre, index) => { %>
-        <a href='/<%= genre.url %>'><%= genre.name %></a>
+        <a href='<%= genre.url %>'><%= genre.name %></a>
         <% if (book.genre.length-1 != index) { %>
         ,
         <% } %>
@@ -37,4 +38,4 @@
 <% } else { %>
     <p>There are no copies of this book.</p>
 <% } %> 
-
+<%- include('./partials/footer') %>

@@ -1,3 +1,5 @@
+<%- include('./partials/header') %>
+
 <h1> <%= title %></h1>
 <form action="" method="post">
     <label for="name">Genre</label>
@@ -7,12 +9,8 @@
         id="name" 
         placeholder="Fantasy, Poetry etc."
         required
-        <% if (undefined === genre) { %>
-            value=''
-        <% } else { %>
-            value=<%= genre.name %>
-        <% } %>
-    >
+        value="<%= genre ? genre.name : '' %>"
+        >
     <button type="submit">Submit</button>
 </form>
 <% if (errors) { %>
@@ -22,4 +20,4 @@
         <% }) %>
     </ul>
 <% } %>
-
+<%- include('./partials/footer') %>

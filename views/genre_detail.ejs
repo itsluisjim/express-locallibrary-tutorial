@@ -1,3 +1,5 @@
+<%- include('./partials/header') %>
+
 <h1>Genre: <%= genre.name %></h1>
 <br>
 <h3>Books</h3>
@@ -14,3 +16,4 @@
 <%} else { %>
 <p>There are no books in this genre.</p>
 <% } %>
+<%- include('./partials/footer') %>

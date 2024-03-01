@@ -1,3 +1,5 @@
+<%- include('./partials/header') %>
+
 <h1><%= title %></h1>
 
 <% if (bookinstance_list.length) { %>
@@ -25,3 +27,4 @@
 <% } else { %>
     <p>There are no book copies in this library.</p>
 <% } %>
+<%- include('./partials/footer') %>
