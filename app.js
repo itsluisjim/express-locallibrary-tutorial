@@ -3,13 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var ejsLayouts = require("express-ejs-layouts");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const catalogRouter = require("./routes/catalog");
 
-const { DB_URL } = process.env.DB_URL;
+require('dotenv').config();
 
 var app = express();
 
@@ -17,7 +16,7 @@ var app = express();
 // Set up mongoose connection
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
-const mongoDB = DB_URL;
+const mongoDB = process.env.DB_URL;
 
 main().catch((err) => console.log(err));
 async function main() {
@@ -34,7 +33,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(ejsLayouts);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
