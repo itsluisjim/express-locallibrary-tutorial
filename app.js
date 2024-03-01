@@ -9,13 +9,15 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const catalogRouter = require("./routes/catalog");
 
+const { DB_URL } = process.env.DB_URL;
+
 var app = express();
 
 
 // Set up mongoose connection
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
-const mongoDB = "mongodb+srv://jimenezluislj85:HUNyif16VMJ6eNjg@cluster0.dz9jvhx.mongodb.net/Library?retryWrites=true&w=majority&appName=Cluster0";
+const mongoDB = DB_URL;
 
 main().catch((err) => console.log(err));
 async function main() {
