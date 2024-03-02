@@ -99,6 +99,7 @@ exports.author_create_post = [
 
         if(authorExists) {
           res.redirect(authorExists.url)
+          return;
         } else {
           await author.save();
           res.redirect(author.url)
