@@ -2,8 +2,10 @@ const Book = require("../models/book");
 const Author = require("../models/author");
 const Genre = require("../models/genre");
 const BookInstance = require("../models/bookinstance");
+const { body, validationResult } = require('express-validator');
 
 const asyncHandler = require("express-async-handler");
+const genre = require("../models/genre");
 
 exports.index = asyncHandler(async (req, res, next) => {
   // Get details of books, book instances, authors and genre counts (in parallel)
@@ -66,13 +68,93 @@ exports.book_detail = asyncHandler(async (req, res, next) => {
 
 // Display book create form on GET.
 exports.book_create_get = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Book create GET");
+
+  const [authors, genres] = await Promise.all([
+    Author.find().sort({family_name: 1}).exec(),
+    Genre.find().sort({name: 1}).exec()
+  ]);
+
+  res.render('book_form', {
+    title: "Create Book",
+    authors,
+    genres,
+    book: undefined,
+    errors: [],
+  })
 });
 
 // Handle book create on POST.
-exports.book_create_post = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Book create POST");
-});
+exports.book_create_post = [
+
+  // make sure genre field is present even if no genre was selected in the form
+  (req, res, next) => {
+    if (!Array.isArray(req.body.genre)) {
+      req.body.genre =
+        typeof req.body.genre === "undefined" ? [] : [req.body.genre];
+    }
+    next();
+  },
+
+  body('title', 'Title field must not be empty.')
+    .trim()
+    .isLength({min: 2})
+    .withMessage("Title must be longer than 2 characters")
+    .escape(),
+  body('author', 'Author field must not be empty.')
+    .trim()
+    .isLength({min: 3})
+    .withMessage('Name must be longer than 3 characters')
+    .escape(),
+  body('summary', 'Summary filed must not be empty.')
+    .trim()
+    .isLength({min: 1})
+    .withMessage('Summray must be longer than 1 character')
+    .escape(),
+  body('isbn')
+    .trim()
+    .isLength({min: 1})
+    .withMessage('ISBN must be more than 1 character')
+    .escape(),
+  body('genre*')
+    .escape(),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+
+    const book = new Book({
+      title: req.body.title,
+      author: req.body.author,
+      summary: req.body.summary,
+      isbn: req.body.isbn,
+      genre: req.body.genre,
+    });
+
+    if(!errors.isEmpty()){
+      const [authors, genres] = await Promise.all([
+        Author.find().sort({family_name: 1}).exec(),
+        Genre.find().sort({name: 1}).exec()
+      ]);
+
+      genres.forEach(genre => {
+        if(book.genre.includes(genre._id)){
+          genre.checked = 'true';
+        }
+      });
+
+      res.render("book_form", {
+        title: "Create Book",
+        authors,
+        genres,
+        book: book,
+        errors: errors.array(),
+      });
+      
+    } else {
+      book.save();
+      res.redirect(book.url);
+    }
+  })
+];
 
 // Display book delete form on GET.
 exports.book_delete_get = asyncHandler(async (req, res, next) => {
