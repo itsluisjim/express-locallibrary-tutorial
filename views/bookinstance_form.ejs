@@ -1,0 +1,46 @@
+<%- include('./partials/header') %>
+
+<h1><%= title %></h1>
+
+<form action="" method="post">
+    <label for="book">Book:</label>
+    <select name="book" id="book" required>
+        <option value="">--Select a book--</option>
+    <% books.forEach(book => { %>
+        <% if (selected_book && selected_book.toString() === book._id.toString()) { %>
+            <option value="<%= book._id %>" selected><%= book.title %></option>
+        <% } %>
+        <option value="<%= book._id %>"><%= book.title %></option>
+    <% }) %>
+    </select>
+
+    <label for="imprint">Imprint:</label>
+    <input type="text" name="imprint" id="imprint" required value="<%= bookInstance? bookInstance.imprint : '' %>">
+
+    <label for="due_back">Date when book available:</label>
+    <input type="date" name="due_back" id="due_back" value="<%= bookInstance? bookInstance.due_back_yyyy_mm_dd : '' %>">
+
+    <label for="status">Status</label>
+    <select name="status" id="status" required>
+        <option value="">--Select status--</option>
+    <% ['Maintenance', 'Available', 'Loaned', 'Reserved'].forEach(status => { %>
+        <% if (bookInstance === undefined || bookInstance.status != status) { %>
+            <option value="<%= status %>"><%= status %></option>
+        <% } else { %>
+        <option value="<%= status %>" selected><%= status %></option>
+        <% } %>
+    <% }) %>
+    </select>
+
+    <button type="submit">Submit</button>
+</form>
+
+<% if (errors) { %>
+    <ul>
+        <% errors.forEach(err => { %>
+            <li><%= err.msg %></li>
+        <% }) %>
+    </ul>
+<% } %>
+
+<%- include('./partials/footer') %>
