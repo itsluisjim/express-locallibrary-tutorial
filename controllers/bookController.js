@@ -148,9 +148,9 @@ exports.book_create_post = [
         book: book,
         errors: errors.array(),
       });
-      
+      return;
     } else {
-      book.save();
+      await book.save();
       res.redirect(book.url);
     }
   })
