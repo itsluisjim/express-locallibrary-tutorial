@@ -1,0 +1,16 @@
+<%- include('./partials/header') %>
+
+<h1>Genre: <%= genre.name %></h1>
+
+<p>Do you really want to delete this genre?</p>
+<form action="" method="post">
+  <input
+    type="hidden"
+    name="genreid"
+    id="genreid"
+    value="<%= genre._id %>"
+  />
+  <button type="submit">Delete</button>
+</form>
+
+<%- include('./partials/footer') %>
