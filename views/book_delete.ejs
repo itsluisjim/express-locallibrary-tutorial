@@ -1,0 +1,19 @@
+<%- include('./partials/header') %>
+
+<h1>Author: <%= book.title %></h1>
+<p><%= book.author.name %></p>
+<p><%= book.summary %></p>
+<br />
+
+<p>Do you really want to delete this Book?</p>
+<form action="" method="post">
+  <input
+    type="hidden"
+    name="bookid"
+    id="bookid"
+    value="<%= book._id %>"
+  />
+  <button type="submit">Delete</button>
+</form>
+
+<%- include('./partials/footer') %>
