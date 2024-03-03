@@ -146,8 +146,6 @@ exports.author_delete_post = asyncHandler(async (req, res, next) => {
     await Author.findByIdAndDelete(req.body.authorid);
     res.redirect("/catalog/authors");
   }
-  
-  
 });
 
 // Display Author update form on GET.
