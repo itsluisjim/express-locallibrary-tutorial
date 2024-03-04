@@ -15,10 +15,12 @@
     <% } %> 
     </p>
     
-    <% if (instance.span != 'Available') { %>
+    <% if (instance.status != 'Available') { %>
         <span>Due back: <%= instance.due_back %></span>
     <% } %>
 <% } else { %>
     <p>Instance not found.</p>
 <% } %>
+
+<p><a href="<%= instance.url %>/delete">Delete copy</a></p>
 <%- include('./partials/footer') %>
