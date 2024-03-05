@@ -39,7 +39,8 @@ app.set('view engine', 'ejs');
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      "script-src": ["'self'", "'kit.fontawesome.com'"],
+      "script-src": ["'self'", "https://kit.fontawesome.com"],
+      "connect-src": ["'self'", "https://kit.fontawesome.com", "https://ka-f.fontawesome.com"]
     },
   }),
 );
