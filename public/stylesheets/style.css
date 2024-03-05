@@ -14,7 +14,6 @@
 body {
   margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: lightsalmon;
   display: grid;
   width: 100vw;
   height: 100vh;
@@ -31,24 +30,109 @@ a {
 
 #sidebar {
   grid-area: nav;
-  background-color: pink;
-  padding: 2rem;
+  border-right: 1px solid lightgray;
+  padding: 2rem 0 0 2rem;
 
   display: flex;
   flex-direction: column;
+  gap: 1rem;
 }
 
 #sidebar a {
   padding: 1rem;
-  border: 1px solid blueviolet;
+  text-decoration: none;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  gap: 8px;
 }
+
+#sidebar a:hover {
+  background-color: rgb(245, 245, 245);
+}
+
+#first-nav, #second-nav {
+  display: flex;
+  flex-direction: column;
+}
+
 #footer {
   grid-area: foot;
-  background-color: limegreen;
-
+  /* background-color: limegreen; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
 }
 
 #content-container {
   grid-area: main;
   padding: 2rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px
+}
+
+form input, form select, form textarea {
+  width: 15rem;
+  padding: 0.5rem;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+form input[type="checkbox"] {
+  width: auto;
+}
+
+form textarea {
+  width: 25rem;
+  height: 5rem;
+}
+
+form > div {
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+#checkbox-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+form button {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #00B7FF;
+  color: white;
+}
+
+#author_form button:hover {
+  cursor: pointer;
+  background-color: #02acef;
+}
+
+#error-heading {
+  color: #f22128;
+}
+
+#errors {
+  width: fit-content;
+  background-color: #fef0f1;
+  color: #f22128;
+  border-radius: 5px;
+  padding: 1rem 3rem;
 }
