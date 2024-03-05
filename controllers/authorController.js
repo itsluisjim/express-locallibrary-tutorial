@@ -49,7 +49,7 @@ exports.author_create_post = [
     .trim()
     .isLength({min: 3})
     .escape()
-    .withMessage("First name must be specified.")
+    .withMessage("First name must be longer than 3 characters.")
     .isAlphanumeric()
     .withMessage("First name has non-alphanumeric characters."),
 
@@ -57,7 +57,7 @@ exports.author_create_post = [
     .trim()
     .isLength({min: 2})
     .escape()
-    .withMessage("Last name must be specified.")
+    .withMessage("Last name must be longer than 2 characters.")
     .isAlphanumeric()
     .withMessage("Last name has non-alphanumeric characters."),
 
@@ -170,7 +170,7 @@ exports.author_update_post = [
     .trim()
     .isLength({min: 3})
     .escape()
-    .withMessage("First name must be specified.")
+    .withMessage("First name must be longer than 3 characters.")
     .isAlphanumeric()
     .withMessage("First name has non-alphanumeric characters."),
 
@@ -178,7 +178,7 @@ exports.author_update_post = [
     .trim()
     .isLength({min: 2})
     .escape()
-    .withMessage("Last name must be specified.")
+    .withMessage("Last name must be longer than 2 characters.")
     .isAlphanumeric()
     .withMessage("Last name has non-alphanumeric characters."),
 
