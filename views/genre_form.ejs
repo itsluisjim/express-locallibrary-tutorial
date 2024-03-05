@@ -2,19 +2,22 @@
 
 <h1> <%= title %></h1>
 <form action="" method="post">
-    <label for="name">Genre</label>
-    <input 
-        type="text" 
-        name="name" 
-        id="name" 
-        placeholder="Fantasy, Poetry etc."
-        required
-        value="<%= genre ? genre.name : '' %>"
-        >
+    <div>
+        <label for="name">Genre:</label>
+        <input 
+            type="text" 
+            name="name" 
+            id="name" 
+            placeholder="Fantasy, Poetry etc."
+            required
+            value="<%= genre ? genre.name : '' %>"
+            >
+    </div>
     <button type="submit">Submit</button>
 </form>
-<% if (errors) { %>
-    <ul>
+<% if (errors.length) { %>
+    <h3 id="error-heading">Error: Invalid form data!</h3>
+    <ul id="errors">
         <% errors.forEach(err => { %>
             <li><%= err.msg %></li>
         <% }) %>
