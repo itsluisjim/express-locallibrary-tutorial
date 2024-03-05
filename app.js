@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const compression = require("compression");
 const helmet = require("helmet");
+const RateLimit = require("express-rate-limit");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -26,7 +27,6 @@ async function main() {
 }
 
 app.use(compression());
-const RateLimit = require("express-rate-limit");
 const limiter = RateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
   max: 20,
@@ -36,7 +36,13 @@ const limiter = RateLimit({
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(helmet());
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      "script-src": ["'self'", "'kit.fontawesome.com'"],
+    },
+  }),
+);
 
 // for dev (prevents http request from being upgraded to https)
 // app.use(
