@@ -18,6 +18,7 @@ require('dotenv').config();
 
 
 var app = express();
+app.set("trust proxy", true);
 
 require('./config/connection');
 
