@@ -7,23 +7,12 @@ const compression = require("compression");
 const helmet = require("helmet");
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 const catalogRouter = require("./routes/catalog");
 
 require('dotenv').config();
 
 var app = express();
 
-
-// Set up mongoose connection
-const mongoose = require("mongoose");
-mongoose.set("strictQuery", false);
-const mongoDB = process.env.DB_URL;
-
-main().catch((err) => console.log(err));
-async function main() {
-  await mongoose.connect(mongoDB);
-}
 
 app.use(compression());
 const RateLimit = require("express-rate-limit");
@@ -36,7 +25,15 @@ const limiter = RateLimit({
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(helmet());
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      "script-src": ["'self'", "https://kit.fontawesome.com"],
+      "connect-src": ["'self'", "https://kit.fontawesome.com", "https://ka-f.fontawesome.com"]
+    },
+  }),
+);
+
 
 // for dev (prevents http request from being upgraded to https)
 // app.use(
@@ -51,8 +48,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  next();
+});
+
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/catalog', catalogRouter);
 
 // catch 404 and forward to error handler
