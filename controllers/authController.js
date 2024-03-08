@@ -81,7 +81,12 @@ exports.user_create_post = [
         });
 
         await newUser.save();
-        res.redirect("/auth/login");
+        req.login(newUser, (err) => {
+          if (err) {
+            return next(err);
+          }
+          return res.redirect("/catalog");
+        });
       }
     }
   }),
