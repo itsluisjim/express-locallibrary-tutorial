@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel='stylesheet' href='/stylesheets/main-form.css' />
+  <title><%= title %></title>
+</head>
+<body id="main-forms-body">
+  <h1><%= title %></h1>
+  <form action="" method="POST" id="signup-form">
+
+    <div>
+      <label for="username">Username:</label>
+      <input name="username" placeholder="username" type="text" required/>
+    </div>
+
+    <div>
+      <label for="password">Password:</label>
+      <input name="password" type="password" required/>
+    </div>
+    <div>
+      <label for="admincode">Admin Code: (optional)</label>
+      <input name="admincode" type="text"/>
+    </div>
+    <button type="submit">Sign Up</button>
+  </form>
+  <a href="/auth/login">Already have an account? Login here!</a>
+
+
+  <% if (errors.length) { %>
+    <h3 id="error-heading">Error: Invalid form data!</h3>
+    <ul id="errors">
+        <% errors.forEach(err => { %>
+            <li><%= err.msg %></li>
+        <% }) %>
+    </ul>
+<% } %>
+</body>
+</html>
+
+
+
+
+
