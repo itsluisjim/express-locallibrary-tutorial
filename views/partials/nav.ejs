@@ -28,9 +28,12 @@
 
   <div id="second-nav">
     <a href="/catalog/bookinstances">All book copies</a>
-    <a href="/catalog/author/create">Create author</a>
-    <a href="/catalog/genre/create">Create genere</a>
-    <a href="/catalog/book/create">Create book</a>
-    <a href="/catalog/bookinstance/create">Create copy</a>
+
+    <% if (currentUser.admin) { %>
+      <a href="/catalog/author/create">Create author</a>
+      <a href="/catalog/genre/create">Create genere</a>
+      <a href="/catalog/book/create">Create book</a>
+      <a href="/catalog/bookinstance/create">Create copy</a>
+    <% } %>
   </div>
 </nav>

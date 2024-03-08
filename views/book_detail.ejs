@@ -38,7 +38,10 @@
 <% } else { %>
     <p>There are no copies of this book.</p>
 <% } %> 
-<p><a href="<%= book.url %>/delete">Delete Book</a></p>
-<p><a href="<%= book.url %>/update">Update Book</a></p>
+
+<% if (currentUser.admin) { %>
+    <p><a href="<%= book.url %>/delete">Delete Book</a></p>
+    <p><a href="<%= book.url %>/update">Update Book</a></p>
+<% } %>
 
 <%- include('./partials/footer') %>

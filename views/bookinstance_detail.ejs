@@ -21,7 +21,8 @@
 <% } else { %>
     <p>Instance not found.</p>
 <% } %>
-
-<p><a href="<%= instance.url %>/update">Update copy</a></p>
-<p><a href="<%= instance.url %>/delete">Delete copy</a></p>
+<% if (currentUser.admin) { %>
+    <p><a href="<%= instance.url %>/update">Update copy</a></p>
+    <p><a href="<%= instance.url %>/delete">Delete copy</a></p>
+<% } %>
 <%- include('./partials/footer') %>
