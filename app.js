@@ -7,6 +7,8 @@ const compression = require("compression");
 const helmet = require("helmet");
 const RateLimit = require("express-rate-limit");
 const MongoStore = require('connect-mongo')
+const passport = require('passport')
+const session = require('express-session');
 
 var indexRouter = require('./routes/index');
 const catalogRouter = require("./routes/catalog");
@@ -16,6 +18,8 @@ require('dotenv').config();
 
 
 var app = express();
+
+require('./config/connection');
 
 const sessionStore = MongoStore.create({mongoUrl: process.env.DB_URL, collectionName: 'sessions'});
 
