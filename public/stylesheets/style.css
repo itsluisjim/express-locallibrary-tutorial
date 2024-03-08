@@ -47,6 +47,11 @@ a {
   gap: 8px;
 }
 
+#logout {
+  margin-top: auto;
+  margin-bottom: 3rem;
+}
+
 #sidebar a:hover {
   background-color: rgb(245, 245, 245);
 }
